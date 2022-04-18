@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <JJ_index_index>
+        <reference name="root">
+            <action method="setTemplate">                  
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="JJ/JJ" name="hello" template="JJ/JJ.phtml"/>
+        </reference>
+    </JJ_index_index>
+</layout>
+
