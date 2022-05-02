@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<JJ_Process>
+			<active>true</active>
+			<codePool>local</codePool>
+		</JJ_Process>
+	</modules>
+</config>

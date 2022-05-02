@@ -1,0 +1,9 @@
+a:5:{i:0;s:22:"File was not uploaded.";i:1;s:1021:"#0 C:\xampp\htdocs\magento\app\code\local\JJ\Process\Model\Process.php(148): Varien_File_Uploader->__construct('file_name')
+#1 C:\xampp\htdocs\magento\app\code\local\JJ\Process\Controllers\Adminhtml\Process\UploadController.php(35): JJ_Process_Model_Process->uploadFile('9')
+#2 C:\xampp\htdocs\magento\app\code\core\Mage\Core\Controller\Varien\Action.php(418): JJ_Process_Adminhtml_Process_UploadController->uploadAction()
+#3 C:\xampp\htdocs\magento\app\code\core\Mage\Core\Controller\Varien\Router\Standard.php(254): Mage_Core_Controller_Varien_Action->dispatch('upload')
+#4 C:\xampp\htdocs\magento\app\code\core\Mage\Core\Controller\Varien\Front.php(172): Mage_Core_Controller_Varien_Router_Standard->match(Object(Mage_Core_Controller_Request_Http))
+#5 C:\xampp\htdocs\magento\app\code\core\Mage\Core\Model\App.php(365): Mage_Core_Controller_Varien_Front->dispatch()
+#6 C:\xampp\htdocs\magento\app\Mage.php(683): Mage_Core_Model_App->run(Array)
+#7 C:\xampp\htdocs\magento\index.php(83): Mage::run('', 'store')
+#8 {main}";s:3:"url";s:101:"/magento/index.php/process/adminhtml_process_upload/upload/id/9/key/a3e92df7de9dc28bbd20a7d0b5c560ab/";s:11:"script_name";s:18:"/magento/index.php";s:4:"skin";s:5:"admin";}

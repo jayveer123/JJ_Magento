@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<modules>
+		<JJ_Product>
+			<version>0.4.0</version>
+		</JJ_Product>
+	</modules>
+	<admin>
+		<routers>
+			<product>
+				<use>admin</use>
+				<args>
+					<module>JJ_Product</module>
+                    <frontName>product</frontName>
+				</args>
+			</product>
+            <!-- <adminhtml>
+                <args>
+                    <modules>
+                        <JJ_Product before="Mage_Adminhtml">JJ_Product</JJ_Product>
+                    </modules>
+                </args>
+            </adminhtml> -->
+		</routers>
+	</admin>
+	<adminhtml>
+		<menu>
+	        <product translate="title" module="product">
+	            <title>Product</title>
+	            <sort_order>40</sort_order>
+	            <children>
+	                <manage translate="title" module="product">
+	                    <title>Manage Product</title>
+	                    <action>product/adminhtml_product/</action>
+	                    <sort_order>0</sort_order>
+	                </manage>
+	            </children>
+	         </product>
+	     </menu>
+	     <layout>
+            <updates>
+                <product>
+                    <file>product.xml</file>
+                </product>
+            </updates>
+        </layout>
+	</adminhtml>
+
+	<global>
+		<helpers>
+            <product>
+                <class>JJ_Product_Helper</class>
+            </product>
+        </helpers>
+        <blocks>
+            <product>
+                <class>JJ_Product_Block</class>
+            </product>
+            <!-- <adminhtml>
+                <rewrite>
+                    <catalog_product_grid>JJ_Product_Block_Catalog_Product_Grid</catalog_product_grid>
+                </rewrite>
+            </adminhtml> -->
+        </blocks>
+        <models>
+            <product>
+                <class>JJ_Product_Model</class>
+                <resourceModel>product_resource</resourceModel>
+            </product>
+            <!-- <catalog>
+                <rewrite>
+                    <product>JJ_Product_Model_Catalog_Product</product>
+                </rewrite>
+            </catalog> -->
+            <product_resource>
+                <class>JJ_Product_Model_Resource</class>
+                <entities>
+                    <product>
+                        <table>product</table>
+                    </product>
+                </entities>
+            </product_resource>
+        </models>
+        <resources>
+            <product_setup>
+                <setup>
+                    <module>JJ_Product</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </product_setup>
+            <pro_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </pro_write>
+            <pro_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </pro_read>
+        </resources>
+        <events>
+            <product_before_save>
+                <observers>
+                    <Pl_Product_Model_Observer>
+                        <type>singleton</type>
+                        <class>JJ_Product_Model_Observer</class>
+                        <method>saveProductObserve</method>
+                    </Pl_Product_Model_Observer>
+                </observers>
+            </product_before_save>
+        </events>
+	</global>
+</config>
