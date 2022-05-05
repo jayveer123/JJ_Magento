@@ -50,7 +50,7 @@ class JJ_Process_Adminhtml_ProcessController extends Mage_Adminhtml_Controller_A
             $model->setData('requestInterval',$this->getRequest()->getPost('requestInterval'));            
             $model->setData('requestModel',$this->getRequest()->getPost('requestModel'));            
             $model->setData('fileName',$this->getRequest()->getPost('fileName'));            
-            
+           
             $model->save();
             Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('process')->__('Process saved successfully.'));
         }
@@ -75,19 +75,8 @@ class JJ_Process_Adminhtml_ProcessController extends Mage_Adminhtml_Controller_A
                 Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('adminhtml')->__('successfully deleted'));
         }
         $this->_redirect('process/adminhtml_process/index');
-    }
+    }   
 
-    public function exportCsvAction()
-    {
-        $model = Mage::getModel('process/process')
-                ->load($this->getRequest()->getParam('id'))
-                ->getDefaultFile();
-        $fileName   = 'sample.csv';
-        $content = ['type'=>'filename','value'=>Mage::getBaseDir('media') . DS . 'process'. DS . 'import' . DS . 'sample.csv','rm'=>1];
-        $this->_prepareDownloadResponse($fileName, $content);
-        
-        $this->_redirect('process/adminhtml_process/index');
-    }
 }
 
 ?>

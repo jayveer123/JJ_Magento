@@ -99,69 +99,71 @@ class JJ_Process_Block_Adminhtml_Process_Grid extends Mage_Adminhtml_Block_Widge
             'type' => 'date',
         ));
 
+       
         $this->addColumn('upload', array(
-            'header'    =>  Mage::helper('process')->__('Upload'),
-            'width'     => '100',
-            'type'      => 'action',
-            'getter'    => 'getId',
-            'actions'   => array(
-                array(
-                    'caption'   => Mage::helper('process')->__('Upload'),
-                    'url'       => array('base'=> '*/adminhtml_process_upload/uploadfile'),
-                    'field'     => 'id'
+                'header'    =>  Mage::helper('process')->__('Upload'),
+                'width'     => '100',
+                'type'      => 'action',
+                'getter'    => 'getId',
+                'actions'   => array(
+                    array(
+                        'caption'   => Mage::helper('process')->__('Upload'),
+                        'url'       => array('base'=> '*/adminhtml_process_upload/uploadfile'),
+                        'field'     => 'id'
+                    ),
                 ),
-            ),
-            'filter'    => false,
-            'sortable'  => false,
-            'index'     => 'stores',
-            'is_system' => true,
-    ));
+                'filter'    => false,
+                'sortable'  => false,
+                'index'     => 'stores',
+                'is_system' => true,
+        ));
 
-    $this->addColumn('verify', array(
-            'header'    =>  Mage::helper('process')->__('Verify'),
-            'width'     => '100',
-            'type'      => 'action',
-            'getter'    => 'getId',
-            'actions'   => array(
-                array(
-                    'caption'   => Mage::helper('process')->__('Verify'),
-                    'url'       => array('base'=> '*/adminhtml_process_upload/verify'),
-                    'field'     => 'id'
+        $this->addColumn('verify', array(
+                'header'    =>  Mage::helper('process')->__('Verify'),
+                'width'     => '100',
+                'type'      => 'action',
+                'getter'    => 'getId',
+                'actions'   => array(
+                    array(
+                        'caption'   => Mage::helper('process')->__('Verify'),
+                        'url'       => array('base'=> '*/adminhtml_process_upload/verify'),
+                        'field'     => 'id'
+                    ),
+
                 ),
-            ),
-            'filter'    => false,
-            'sortable'  => false,
-            'index'     => 'stores',
-            'is_system' => true,
-    ));
+                'filter'    => false,
+                'sortable'  => false,
+                'index'     => 'stores',
+                'is_system' => true,
+        ));
 
-    $this->addColumn('execution', array(
-            'header'    =>  Mage::helper('process')->__('Execute'),
-            'width'     => '100',
-            'type'      => 'action',
-            'getter'    => 'getId',
-            'actions'   => array(
-                array(
-                    'caption'   => Mage::helper('process')->__('Execute'),
-                    'url'       => array('base'=> '*/adminhtml_process_upload/execute'),
-                    'field'     => 'id'
+        $this->addColumn('execution', array(
+                'header'    =>  Mage::helper('process')->__('Execute'),
+                'width'     => '100',
+                'type'      => 'action',
+                'getter'    => 'getId',
+                'actions'   => array(
+                    array(
+                        'caption'   => Mage::helper('process')->__('Execute'),
+                        'url'       => array('base'=> '*/adminhtml_process_upload/execute'),
+                        'field'     => 'id'
+                    ),
                 ),
-            ),
-            'filter'    => false,
-            'sortable'  => false,
-            'index'     => 'stores',
-            'is_system' => true,
-    ));
+                'filter'    => false,
+                'sortable'  => false,
+                'index'     => 'stores',
+                'is_system' => true,
+        ));
 
-    $this->addColumn('downloads', array(
-            'header'    =>  Mage::helper('process')->__('Download'),
+        $this->addColumn('default', array(
+            'header'    =>  Mage::helper('process')->__('Download Sample'),
             'width'     => '100',
             'type'      => 'action',
             'getter'    => 'getId',
             'actions'   => array(
                 array(
                     'caption'   => Mage::helper('process')->__('Download'),
-                    'url'       => array('base'=> '*/*/exportCsv'),
+                    'url'       => array('base'=> '*/adminhtml_process_upload/exportCsv'),
                     'field'     => 'id'
                 ),
             ),
@@ -169,9 +171,7 @@ class JJ_Process_Block_Adminhtml_Process_Grid extends Mage_Adminhtml_Block_Widge
             'sortable'  => false,
             'index'     => 'stores',
             'is_system' => true,
-    ));
-
-    //$this->addExportType('*/*/exportCsv', Mage::helper('process')->__('CSV'));
+        ));
 
         return parent::_prepareColumns();
     }

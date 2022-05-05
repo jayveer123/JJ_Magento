@@ -11,13 +11,6 @@ class JJ_Process_Block_Adminhtml_Process_Entry_Edit_Tabs_Form extends Mage_Admin
                 ->columns(['value' => 'process_id','label' => 'name']);
         return $model->getResource()->getReadConnection()->fetchAll($select);
     }
-
-    // protected function getStartDate()
-    // {
-    //     print_r(explode(':',Mage::registry('current_process_entry')->getData()['startTime']));
-    //     return explode(':',Mage::registry('current_process_entry')->getData()['startTime']);
-    // }
-
     protected function _prepareForm()
     {
         $form = new Varien_Data_Form();
@@ -55,8 +48,8 @@ class JJ_Process_Block_Adminhtml_Process_Entry_Edit_Tabs_Form extends Mage_Admin
             'name' => 'data',
         ));    
 
-        if ( Mage::getSingleton('adminhtml/session')->getProData() ){
-            $form->setValues(Mage::getSingleton('adminhtml/session')->getProData());
+        if ( Mage::getSingleton('adminhtml/session')->getEntryData() ){
+            $form->setValues(Mage::getSingleton('adminhtml/session')->getEntryData());
             Mage::getSingleton('adminhtml/session')->setProData(null);
         } elseif ( Mage::registry('current_process_entry') ) {
             $form->setValues(Mage::registry('current_process_entry')->getData());
