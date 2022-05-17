@@ -1,0 +1,2 @@
+Index,attribute_set,type,input,lable,source,required,name,group
+1,Custom,varchar,select,Gender,,TRUE,gender,General

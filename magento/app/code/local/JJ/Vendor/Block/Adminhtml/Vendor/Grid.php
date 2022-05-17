@@ -15,6 +15,7 @@ class JJ_Vendor_Block_Adminhtml_Vendor_Grid Extends Mage_Adminhtml_Block_Widget_
 			->addAttributeToSelect('firstname')
 			->addAttributeToSelect('lastname')
 			->addAttributeToSelect('email')
+			->addAttributeToSelect('status')
 			->addAttributeToSelect('mobile');
 		$storeId = $this->_getStoreId();
 		$collection->joinAttribute(
@@ -44,6 +45,14 @@ class JJ_Vendor_Block_Adminhtml_Vendor_Grid Extends Mage_Adminhtml_Block_Widget_
 		$collection->joinAttribute(
 			'mobile',
 			'vendor/mobile',
+			'entity_id',
+			null,
+			'inner',
+			$storeId
+		);
+		$collection->joinAttribute(
+			'status',
+			'vendor/status',
 			'entity_id',
 			null,
 			'inner',
@@ -89,6 +98,20 @@ class JJ_Vendor_Block_Adminhtml_Vendor_Grid Extends Mage_Adminhtml_Block_Widget_
 				'header' => Mage::helper('vendor')->__('Email'),
 				'width' => '50px',
 				'index' => 'email',
+			]
+		);
+		$this->addColumn('mobile',
+			[
+				'header' => Mage::helper('vendor')->__('Mobile'),
+				'width' => '50px',
+				'index' => 'mobile',
+			]
+		);
+		$this->addColumn('status',
+			[
+				'header' => Mage::helper('vendor')->__('Status'),
+				'width' => '50px',
+				'index' => 'status',
 			]
 		);
 

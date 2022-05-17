@@ -5,17 +5,17 @@
 			<version>0.0.3</version>
 		</JJ_Vendor>
 	</modules>
-	<admin>
-        <routers>
-            <vendor>
-                <use>admin</use>
-                <args>
-                    <module>JJ_Vendor</module>
+    <admin>
+		<routers>
+			<vendor>
+				<use>admin</use>
+				<args>
+					<module>JJ_Vendor</module>
                     <frontName>vendor</frontName>
-                </args>
-            </vendor>
-        </routers>
-    </admin>
+				</args>
+			</vendor>
+		</routers>
+	</admin>
 	<global>
 		<blocks>
 			<vendor>
@@ -39,9 +39,9 @@
 					<vendor_datetime>
 						<table>vendor_datetime</table>
 					</vendor_datetime>
-					<vendor_int>
-						<table>vendor_int</table>
-					</vendor_int>
+					<vendor_integer>
+						<table>vendor_integer</table>
+					</vendor_integer>
 					<vendor_varchar>
 						<table>vendor_varchar</table>
 					</vendor_varchar>
@@ -70,7 +70,6 @@
 				</setup>
 			</vendor_setup>
 		</resources>
-
 	</global>
 	<adminhtml>
 		<layout>

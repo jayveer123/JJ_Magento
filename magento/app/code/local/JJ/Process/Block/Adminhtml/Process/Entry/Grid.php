@@ -48,12 +48,7 @@ class JJ_Process_Block_Adminhtml_Process_Entry_Grid extends Mage_Adminhtml_Block
      */
     protected function _prepareColumns()
     {
-        $this->addColumn('entity_id', array(
-            'header'    => Mage::helper('process')->__('ID'),
-            'align'     =>'right',
-            'width'     => '50px',
-            'index'     => 'entity_id',
-          ));   
+          
   
         $this->addColumn('entry_id', array(
             'header' => Mage::helper('process')->__('ID'),

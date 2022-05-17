@@ -96,6 +96,7 @@ class JJ_Process_Adminhtml_Process_UploadController extends Mage_Adminhtml_Contr
                 ->columns(['count(entry_id)'])
                 ->where('process_id = ?', $processId)
                 ->where('startTime IS NULL');
+        
         $entryData = $entry->getResource()->getReadConnection()->fetchOne($select);
         if(!$entryData){
             throw new Exception("No recored available for execution", 1);

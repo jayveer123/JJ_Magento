@@ -1,4 +1,4 @@
 <?php
-class Ccc_User_Block_Adminhtml_User_Attribute_Edit_Tab_Options extends Mage_Eav_Block_Adminhtml_Attribute_Edit_Options_Abstract {
+class JJ_Vendor_Block_Adminhtml_Vendor_Attribute_Edit_Tab_Options extends Mage_Eav_Block_Adminhtml_Attribute_Edit_Options_Abstract {
 
 }

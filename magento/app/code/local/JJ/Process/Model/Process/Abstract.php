@@ -285,11 +285,11 @@ class JJ_Process_Model_Process_Abstract extends Mage_Core_Model_Abstract
 
     public function verify()
     {
+        
         $this->readFile();
         $this->validateData();
         $this->processEntry();
         $this->genrateInvalidDataReport();
-
         return true;          
     }
 
@@ -315,7 +315,9 @@ class JJ_Process_Model_Process_Abstract extends Mage_Core_Model_Abstract
     {
         $entryModel = Mage::getModel('process/entry');
         $readConnection = $entryModel->getResource()->getReadConnection();
-        $readConnection->insertOnDuplicate($entryModel->getResource()->getMainTable(),$this->getFiledDatas());
+        if($this->getFiledDatas()){
+            $readConnection->insertOnDuplicate($entryModel->getResource()->getMainTable(),$this->getFiledDatas());
+        }
     }
 
     public function getIdentifier($row)
@@ -377,6 +379,7 @@ class JJ_Process_Model_Process_Abstract extends Mage_Core_Model_Abstract
 
     public function import($entryData)
     {
+
         foreach ($entryData as $key => $entry) {
             $requestModel = Mage::getModel($this->getProcess()->getData('requestModel'));
             $requestModel->setData(json_decode($entry['data'], true));

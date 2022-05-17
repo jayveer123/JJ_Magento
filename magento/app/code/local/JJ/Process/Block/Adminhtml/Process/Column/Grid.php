@@ -12,7 +12,7 @@ class JJ_Process_Block_Adminhtml_Process_Column_Grid extends Mage_Adminhtml_Bloc
         $this->setSaveParametersInSession(true);
     }
 
-    protected function getProcessOption()
+    /*protected function getProcessOption()
     {
         $model = Mage::getModel('process/process');
         $select = $model->getCollection()
@@ -29,7 +29,7 @@ class JJ_Process_Block_Adminhtml_Process_Column_Grid extends Mage_Adminhtml_Bloc
             $processOption = array_merge($option,$processOption);
         }
         return $processOption;
-    }
+    }*/
 
     /**
      * Init category columns collection
@@ -38,7 +38,13 @@ class JJ_Process_Block_Adminhtml_Process_Column_Grid extends Mage_Adminhtml_Bloc
     protected function _prepareCollection()
     {
         $collection = Mage::getModel('process/column')->getCollection();
-
+        foreach ($collection->getItems() as $data) 
+        {
+            $data->process_id = Mage::getModel('process/process')->load($data->process_id)->name;
+            $data->casting_type = Mage::getModel('process/column')->load($data->getId())->getCastingType();
+            $data->required = Mage::getModel('process/column')->load($data->getId())->getRequired();
+            $data->exception = Mage::getModel('process/column')->load($data->getId())->getIsException();
+        }
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
@@ -58,8 +64,6 @@ class JJ_Process_Block_Adminhtml_Process_Column_Grid extends Mage_Adminhtml_Bloc
         $this->addColumn('process_id', array(
             'header' => Mage::helper('process')->__('Process Id'),
             'index' => 'process_id',
-            'type' => 'options',
-            'options' => $this->getProcessOption(),
         ));
 
         $this->addColumn('name', array(

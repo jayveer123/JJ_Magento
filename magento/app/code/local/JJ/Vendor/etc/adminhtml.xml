@@ -6,7 +6,7 @@
 			<sort_order>72</sort_order>
 			<children>
 				<vendor>
-					<title>Manage vendor</title>
+					<title>Manage Vendor</title>
 					<sort_order>100</sort_order>
 					<action>vendor/adminhtml_vendor</action>
 				</vendor>
@@ -51,7 +51,6 @@
 							<alert translate="title">
 								<title>Manage Attribute set</title>
 							</alert>
-							
 						</children>
 					</vendor>
 				</children>

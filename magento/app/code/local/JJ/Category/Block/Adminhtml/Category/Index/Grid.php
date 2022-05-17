@@ -44,30 +44,7 @@ class JJ_Category_Block_Adminhtml_Category_Index_Grid extends Mage_Adminhtml_Blo
             'index' => 'name',
         ));
 
-        $this->addColumn('path', array(
-            'header' => Mage::helper('category')->__('Path'),
-            'index' => 'path',
-        ));
-
-        $this->addColumn('status', array(
-          'header'    => Mage::helper('category')->__('status'),
-          'index'     => 'status',
-          'type'      => 'options',
-          'options'    => array(
-                1 => 'Active',
-                2 => 'Inactive'
-            ),
-      ));
-
-        $this->addColumn('created_date', array(
-            'header' => Mage::helper('category')->__('Created Date'),
-            'index' => 'created_date',
-        ));
-
-        $this->addColumn('updated_date', array(
-            'header' => Mage::helper('category')->__('Updated Date'),
-            'index' => 'updated_date',
-        ));
+      
 
         return parent::_prepareColumns();
     }
@@ -75,6 +52,19 @@ class JJ_Category_Block_Adminhtml_Category_Index_Grid extends Mage_Adminhtml_Blo
     public function getRowUrl($row)
     {
         return $this->getUrl('*/*/edit', array('id'=>$row->getId()));
+    }
+
+    protected function _prepareMassaction()
+    {
+        $this->setMassactionIdField('category_id');
+        $this->getMassactionBlock()->setFormFieldName('category');
+
+        $this->getMassactionBlock()->addItem('delete', array(
+             'label'    => Mage::helper('category')->__('Delete'),
+             'url'      => $this->getUrl('*/*/massDelete'),
+             'confirm'  => Mage::helper('category')->__('Are you sure?')
+        ));
+
     }
 
 }

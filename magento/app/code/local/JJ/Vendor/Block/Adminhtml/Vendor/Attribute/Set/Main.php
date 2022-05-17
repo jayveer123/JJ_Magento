@@ -39,11 +39,11 @@ class JJ_Vendor_Block_Adminhtml_Vendor_Attribute_Set_Main extends Mage_Adminhtml
 					$attr = array(
 						'text' => $child->getAttributeCode(),
 						'id' => $child->getAttributeId(),
-						'cls' => (!$child->getIsUserDefined()) ? 'system-leaf' : 'leaf',
+						'cls' => (!$child->getIsVendorDefined()) ? 'system-leaf' : 'leaf',
 						'allowDrop' => false,
 						'allowDrag' => true,
 						'leaf' => true,
-						'is_vendor_defined' => $child->getIsUserDefined(),
+						'is_vendor_defined' => $child->getIsVendorDefined(),
 						'is_configurable' => (int) in_array($child->getAttributeId(), $configurable),
 						'entity_id' => $child->getEntityAttributeId(),
 					);
@@ -85,7 +85,7 @@ class JJ_Vendor_Block_Adminhtml_Vendor_Attribute_Set_Main extends Mage_Adminhtml
 				'allowDrop' => false,
 				'allowDrag' => true,
 				'leaf' => true,
-				'is_vendor_defined' => $child->getIsUserDefined(),
+				'is_vendor_defined' => $child->getIsVendorDefined(),
 				'is_configurable' => false,
 				'entity_id' => $child->getEntityId(),
 			);

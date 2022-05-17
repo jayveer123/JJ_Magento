@@ -1,28 +1,28 @@
 <?php
 
-class Ccc_User_Adminhtml_User_SetController extends Mage_Adminhtml_Controller_Action {
+class JJ_Vendor_Adminhtml_Vendor_SetController extends Mage_Adminhtml_Controller_Action {
 
 	protected function _setTypeId() {
-		Mage::register('entityType', Mage::getModel('user/user')->getResource()->getTypeId());
+		Mage::register('entityType', Mage::getModel('vendor/vendor')->getResource()->getTypeId());
 	}
 
 	public function indexAction() {
-		$this->loadLayout()->_setActiveMenu('user');
+		$this->loadLayout()->_setActiveMenu('vendor');
 		$this->_setTypeId();
 
 		$this->_addContent($this->getLayout()->createBlock('adminhtml/catalog_product_attribute_set_toolbar_main'));
 
-		$this->_addContent($this->getLayout()->createBlock('user/adminhtml_user_attribute_set_grid'));
+		$this->_addContent($this->getLayout()->createBlock('vendor/adminhtml_vendor_attribute_set_grid'));
 
 		$this->renderLayout();
 	}
 
 	public function addAction() {
-		$this->_title('User')
+		$this->_title('Vendor')
 			->_title('Attribute')
-			->_title('Manage User Attribute Set')
+			->_title('Manage Vendor Attribute Set')
 			->_title('New Set');
-		$this->loadLayout()->_setActiveMenu('user');
+		$this->loadLayout()->_setActiveMenu('vendor');
 		$this->_setTypeId();
 
 		$this->_addContent($this->getLayout()->createBlock('adminhtml/catalog_product_attribute_set_toolbar_add'));
@@ -31,9 +31,9 @@ class Ccc_User_Adminhtml_User_SetController extends Mage_Adminhtml_Controller_Ac
 	}
 
 	public function editAction() {
-		$this->_title(Mage::helper('user')->__('User'))
-			->_title(Mage::helper('user')->__('Attributes'))
-			->_title(Mage::helper('user')->__('Manage Attribute Sets'));
+		$this->_title(Mage::helper('vendor')->__('vendor'))
+			->_title(Mage::helper('vendor')->__('Attributes'))
+			->_title(Mage::helper('vendor')->__('Manage Attribute Sets'));
 
 		$this->_setTypeId();
 		$attributeSet = Mage::getModel('eav/entity_attribute_set')
@@ -44,21 +44,21 @@ class Ccc_User_Adminhtml_User_SetController extends Mage_Adminhtml_Controller_Ac
 			return;
 		}
 
-		$this->_title($attributeSet->getId() ? $attributeSet->getAttributeSetName() : Mage::helper('user')->__('New Set'));
+		$this->_title($attributeSet->getId() ? $attributeSet->getAttributeSetName() : Mage::helper('vendor')->__('New Set'));
 
 		Mage::register('current_attribute_set', $attributeSet);
 
 		$this->loadLayout();
-		$this->_setActiveMenu('user');
+		$this->_setActiveMenu('vendor');
 
 		$this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
 
-		$this->_addBreadcrumb(Mage::helper('user')->__('user'), Mage::helper('user')->__('user'));
+		$this->_addBreadcrumb(Mage::helper('vendor')->__('vendor'), Mage::helper('vendor')->__('vendor'));
 		$this->_addBreadcrumb(
-			Mage::helper('user')->__('Manage User Attribute Sets'),
-			Mage::helper('user')->__('Manage User Attribute Sets'));
+			Mage::helper('vendor')->__('Manage vendor Attribute Sets'),
+			Mage::helper('vendor')->__('Manage vendor Attribute Sets'));
 
-		$this->_addContent($this->getLayout()->createBlock('user/adminhtml_user_attribute_set_main'));
+		$this->_addContent($this->getLayout()->createBlock('vendor/adminhtml_vendor_attribute_set_main'));
 
 		$this->renderLayout();
 	}
@@ -79,7 +79,7 @@ class Ccc_User_Adminhtml_User_SetController extends Mage_Adminhtml_Controller_Ac
 		$model = Mage::getModel('eav/entity_attribute_set')
 			->setEntityTypeId($entityTypeId);
 
-		$helper = Mage::helper('user');
+		$helper = Mage::helper('vendor');
 		try
 		{
 			if ($isNewSet) {
@@ -91,7 +91,7 @@ class Ccc_User_Adminhtml_User_SetController extends Mage_Adminhtml_Controller_Ac
 					$model->load($attributeSetId);
 				}
 				if (!$model->getId()) {
-					Mage::throwException(Mage::helper('salesman')->__('This attribute set no longer exists.'));
+					Mage::throwException(Mage::helper('vendor')->__('This attribute set no longer exists.'));
 				}
 				$data = Mage::helper('core')->jsonDecode($this->getRequest()->getPost('data'));
 
@@ -108,11 +108,9 @@ class Ccc_User_Adminhtml_User_SetController extends Mage_Adminhtml_Controller_Ac
 			$model->save();
 			$this->_getSession()->addSuccess($helper->__('The attribute set has been saved.'));
 		} catch (Mage_Core_Exception $e) {
-			
 			$this->_getSession()->addError($e->getMessage());
 			$hasError = true;
 		} catch (Exception $e) {
-			
 			$this->_getSession()->addException($e,
 				$helper->__('An error occurred while saving the attribute set.'));
 			$hasError = true;

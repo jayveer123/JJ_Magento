@@ -1,0 +1,48 @@
+2022-05-12T05:01:48+00:00 DEBUG (7): Array
+(
+    [root] => 
+    [Bedroom] => 25
+    [Bedroom/Bed] => 26
+    [Bedroom/Bed/Headboard] => 27
+    [Bedroom/Bed/Footboard] => 28
+    [Bedroom/Dresser] => 29
+    [Bedroom/Nightstand] => 30
+    [Bedroom/Bench] => 31
+    [Bedroom/Bench/Plastic] => 32
+    [Bedroom/Bench/wood] => 33
+    [Bedroom/Bench/Metel] => 34
+    [Bedroom/Bench/rubber] => 35
+)
+
+2022-05-12T05:13:21+00:00 DEBUG (7): Array
+(
+    [root] => 
+    [Bedroom] => 36
+    [Bedroom/Bed] => 37
+    [Bedroom/Bed/Footboard] => 38
+    [Bedroom/Dresser] => 39
+    [Bedroom/Nightstand] => 40
+    [Bedroom/Bench] => 41
+    [Bedroom/Bench/Plastic] => 42
+    [Bedroom/Bench/wood] => 43
+    [Bedroom/Bench/Metel] => 44
+    [Bedroom/Bench/rubber] => 45
+    [Living Room] => 46
+)
+
+2022-05-13T03:26:57+00:00 DEBUG (7): Array
+(
+    [root] => 
+    [Bedroom/Bed] => 49
+    [Bedroom] => 50
+    [Bedroom/Bench] => 51
+    [Bedroom/Dresser] => 52
+    [Bedroom/Bed/Footboard] => 53
+    [Living Room] => 54
+    [Bedroom/Bench/Metel] => 55
+    [Bedroom/Nightstand] => 56
+    [Bedroom/Bench/Plastic] => 57
+    [Bedroom/Bench/rubber] => 58
+    [Bedroom/Bench/wood] => 59
+)
+

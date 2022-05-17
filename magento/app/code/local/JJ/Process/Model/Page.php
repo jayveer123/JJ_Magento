@@ -20,9 +20,6 @@ class JJ_Process_Model_Page extends JJ_Process_Model_Process_Abstract
             'mobile' => $row['mobile'],
         ];
     }
-
-    
-
     public function validateRow($row)
     {
         return $row;

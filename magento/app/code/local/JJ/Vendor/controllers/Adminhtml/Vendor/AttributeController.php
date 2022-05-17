@@ -1,5 +1,5 @@
 <?php
-class Ccc_Vendor_Adminhtml_Vendor_AttributeController extends Mage_Adminhtml_Controller_Action {
+class JJ_Vendor_Adminhtml_Vendor_AttributeController extends Mage_Adminhtml_Controller_Action {
 	public function indexAction() {
 		$this->loadLayout()
 			->_setActiveMenu('vendor/vendor')
@@ -8,7 +8,7 @@ class Ccc_Vendor_Adminhtml_Vendor_AttributeController extends Mage_Adminhtml_Con
 	}
 	public function preDispatch() {
 		parent::preDispatch();
-		$this->_entityTypeId = Mage::getModel('eav/entity')->setType(Ccc_Vendor_Model_Resource_Vendor::ENTITY)->getTypeId();
+		$this->_entityTypeId = Mage::getModel('eav/entity')->setType(JJ_Vendor_Model_Resource_Vendor::ENTITY)->getTypeId();
 	}
 	public function newAction() {
 		$this->_forward('edit');
@@ -36,8 +36,8 @@ class Ccc_Vendor_Adminhtml_Vendor_AttributeController extends Mage_Adminhtml_Con
 
 		}
 
-		$data = Mage::getSingleton('vendor/session')->getAttributeData(true);
-
+		$data = Mage::getSingleton('core/session')->getAttributeData(true);
+    
 		if (!empty($data)) {
 			$model->addData($data);
 		}
@@ -81,11 +81,10 @@ class Ccc_Vendor_Adminhtml_Vendor_AttributeController extends Mage_Adminhtml_Con
 	}
 
 	public function saveAction() {
-
 		$data = $this->getRequest()->getPost();
 
 		if ($data) {
-			$session = Mage::getSingleton('vendor/session');
+			$session = Mage::getSingleton('core/session');
 			$model = Mage::getModel('eav/entity_attribute');
 			$helper = Mage::helper('vendor/vendor');
 			$id = $this->getRequest()->getParam('attribute_id');
@@ -135,7 +134,7 @@ class Ccc_Vendor_Adminhtml_Vendor_AttributeController extends Mage_Adminhtml_Con
 			}
 
 			$data['backend_model'] = $model->getBackendModel();
-			$data['is_vendor_defined'] = $model->getIsUserDefined();
+			$data['is_vendor_defined'] = $model->getIsVendorDefined();
 			$data['attribute_code'] = $model->getAttributeCode();
 			$data['frontend_input'] = $model->getFrontendInput();
 		} else {
@@ -143,7 +142,7 @@ class Ccc_Vendor_Adminhtml_Vendor_AttributeController extends Mage_Adminhtml_Con
 			$data['backend_model'] = $helper->getAttributeBackendModelByInputType($data['frontend_input']);
 		}
 
-		if (is_null($model->getIsUserDefined()) || $model->getIsUserDefined() != 0) {
+		if (is_null($model->getIsVendorDefined()) || $model->getIsVendorDefined() != 0) {
 			$data['backend_type'] = $model->getBackendTypeByInput($data['frontend_input']);
 		}
 
@@ -158,7 +157,7 @@ class Ccc_Vendor_Adminhtml_Vendor_AttributeController extends Mage_Adminhtml_Con
 
 		if (!$id) {
 			$model->setEntityTypeId($this->_entityTypeId);
-			$model->setIsUserDefined(1);
+			$model->setIsVendorDefined(1);
 		}
 
 		if ($this->getRequest()->getParam('set') && $this->getRequest()->getParam('group')) {
@@ -176,9 +175,9 @@ class Ccc_Vendor_Adminhtml_Vendor_AttributeController extends Mage_Adminhtml_Con
 			$session->setAttributeData(false);
 
 			$this->_redirect('*/*/', array());
+
 			return;
 		} catch (Exception $e) {
-			
 			$session->addError($e->getMessage());
 			$session->setAttributeData($data);
 			$this->_redirect('*/*/edit', array('attribute_id' => $id, '_current' => true));
@@ -193,8 +192,8 @@ class Ccc_Vendor_Adminhtml_Vendor_AttributeController extends Mage_Adminhtml_Con
 
 			// entity type check
 			$model->load($id);
-			if ($model->getEntityTypeId() != $this->_entityTypeId || !$model->getIsUserDefined()) {
-				Mage::getSingleton('vendor/session')->addError(
+			if ($model->getEntityTypeId() != $this->_entityTypeId || !$model->getIsVendorDefined()) {
+				Mage::getSingleton('core/session')->addError(
 					Mage::helper('vendor')->__('This attribute cannot be deleted.'));
 				$this->_redirect('*/*/');
 				return;
@@ -202,8 +201,8 @@ class Ccc_Vendor_Adminhtml_Vendor_AttributeController extends Mage_Adminhtml_Con
 
 			try {
 				$model->delete();
-				Mage::getSingleton('vendor/session')->addSuccess(
-					Mage::helper('vendor')->__('The vendor attribute has been deleted.'));
+				Mage::getSingleton('core/session')->addSuccess(
+					Mage::helper('vendor')->__('The Vendor attribute has been deleted.'));
 				$this->_redirect('*/*/');
 				return;
 			} catch (Exception $e) {
@@ -212,7 +211,7 @@ class Ccc_Vendor_Adminhtml_Vendor_AttributeController extends Mage_Adminhtml_Con
 				return;
 			}
 		}
-		Mage::getSingleton('vendor/session')->addError(
+		Mage::getSingleton('core/session')->addError(
 			Mage::helper('vendor')->__('Unable to find an attribute to delete.'));
 		$this->_redirect('*/*/');
 	}

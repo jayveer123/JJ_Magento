@@ -17,8 +17,9 @@ class JJ_Product_Block_Adminhtml_Product_Index_Grid extends Mage_Adminhtml_Block
         $collection = Mage::getResourceModel('product/product_collection');
         foreach ($collection->getItems() as $col)
         {
-            $col->path = $col->getPath();
-        }
+            $categoryModel = Mage::getModel('category/category')->load($col->category_id);
+            $col->category = $categoryModel->getPath();
+        } 
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
@@ -33,6 +34,11 @@ class JJ_Product_Block_Adminhtml_Product_Index_Grid extends Mage_Adminhtml_Block
             'width' => '50px',
             'align' => 'right',
             'index' => 'product_id',
+        ));
+
+        $this->addColumn('category', array(
+            'header' => Mage::helper('product')->__('Category'),
+            'index' => 'category',
         ));
 
         $this->addColumn('name', array(

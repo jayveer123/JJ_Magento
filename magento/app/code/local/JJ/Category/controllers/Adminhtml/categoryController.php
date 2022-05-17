@@ -145,5 +145,28 @@ class JJ_Category_Adminhtml_categoryController extends Mage_Adminhtml_Controller
  			}
  		}
  	}
+
+    public function massDeleteAction() 
+    {
+        $categoryIds = $this->getRequest()->getParam('category');
+
+        if(!is_array($categoryIds)) {
+             Mage::getSingleton('adminhtml/session')->addError(Mage::helper('adminhtml')->__('Please select category(s).'));
+        } else {
+            try {
+                $category = Mage::getModel('category/category');
+                foreach ($categoryIds as $categoryId) {
+                    $category->load($categoryId)->delete();
+                }
+                Mage::getSingleton('adminhtml/session')->addSuccess(
+                    Mage::helper('adminhtml')->__('Total of %d record(s) were deleted.', count($categoryIds))
+                );
+            } catch (Exception $e) {
+                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+            }
+        }
+
+        $this->_redirect('*/*/index');
+    }
 }
 

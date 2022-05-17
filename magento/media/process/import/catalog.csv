@@ -1,0 +1,2 @@
+Index,attribute_set,type,input,lable,source,required,name,group
+1,Default,varchar,select,Product Color,,TRUE,product_test_1,General

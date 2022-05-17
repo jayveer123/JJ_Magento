@@ -7,7 +7,7 @@ class JJ_Category_Block_Adminhtml_Category_Index_Edit_Tab_Form extends Mage_Admi
         $form = new Varien_Data_Form();
         $this->setForm($form);
         $fieldset = $form->addFieldset('category_form', array('legend'=>Mage::helper('category')->__('category information')));
-
+        
         $fieldset->addField('name', 'text', array(
             'label' => Mage::helper('category')->__('Name'),
             'class' => 'required-entry',

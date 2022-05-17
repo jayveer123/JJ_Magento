@@ -4,7 +4,7 @@ class JJ_Vendor_Block_Adminhtml_Vendor_Edit_Tabs extends Mage_Adminhtml_Block_Wi
 	public function __construct() {
 		parent::__construct();
 		$this->setDestElementId('edit_form');
-		$this->setTitle(Mage::helper('vendor')->__('vendor Information'));
+		$this->setTitle(Mage::helper('vendor')->__('Vendor Information'));
 	}
 
 	public function getVendor() {
@@ -12,17 +12,18 @@ class JJ_Vendor_Block_Adminhtml_Vendor_Edit_Tabs extends Mage_Adminhtml_Block_Wi
 	}
 
 	protected function _beforeToHtml() {
-		$vendorAttributes = Mage::getResourceModel('eav/entity_attribute_collection')->setEntityTypeFilter(Mage::getModel('eav/entity')->setType(JJ_vendor_Model_Resource_vendor::ENTITY)->getTypeId());
-		if (!$this->getvendor()->getId()) {
+		$vendorAttributes = Mage::getResourceModel('eav/entity_attribute_collection')->setEntityTypeFilter(Mage::getModel('eav/entity')->setType(JJ_Vendor_Model_Resource_Vendor::ENTITY)->getTypeId());
+
+		if (!$this->getVendor()->getId()) {
 			foreach ($vendorAttributes as $attribute) {
 				$default = $attribute->getDefaultValue();
 				if ($default != null) {
-					$this->getvendor()->setData($attribute->getAttributeCode(), $default);
+					$this->getVendor()->setData($attribute->getAttributeCode(), $default);
 				}
 			}
 		}
 
-		$attributeSetId = $this->getvendor()->getResource()->getEntityType()->getDefaultAttributeSetId();
+		$attributeSetId = $this->getVendor()->getResource()->getEntityType()->getDefaultAttributeSetId();
 
 		$groupCollection = Mage::getResourceModel('eav/entity_attribute_group_collection')
 			->setAttributeSetFilter($attributeSetId)
@@ -36,11 +37,10 @@ class JJ_Vendor_Block_Adminhtml_Vendor_Edit_Tabs extends Mage_Adminhtml_Block_Wi
 			}
 			$attributes = [];
 			foreach ($vendorAttributes as $attribute) {
-				if ($this->getvendor()->checkInGroup($attribute->getId(), $attributeSetId, $group->getId())) {
+				if ($this->getVendor()->checkInGroup($attribute->getId(), $attributeSetId, $group->getId())) {
 					$attributes[] = $attribute;
 				}
 			}
-
 			if (!$attributes) {
 				continue;
 			}

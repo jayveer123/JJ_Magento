@@ -1,0 +1,15 @@
+2022-05-16T12:46:35+00:00 DEBUG (7): Array
+(
+    [0] => Array
+        (
+            [entry_id] => 406
+            [process_id] => 5
+            [identifier] => city
+            [data] => {"name":"city","group":"General","attribute_set":"Custom","type":"varchar","input":"text","lable":"City","source":"","required":"TRUE"}
+            [startTime] => 
+            [endTime] => 
+            [createdDate] => 
+        )
+
+)
+

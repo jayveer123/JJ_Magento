@@ -30,7 +30,6 @@ class JJ_Vendor_Adminhtml_VendorController extends Mage_Adminhtml_Controller_Act
 	}
 
 	public function saveAction() {
-
 		try {
 
 			$vendorData = $this->getRequest()->getPost('account');
@@ -54,7 +53,6 @@ class JJ_Vendor_Adminhtml_VendorController extends Mage_Adminhtml_Controller_Act
 			$this->_redirect('*/*/');
 
 		} catch (Exception $e) {
-			
 			Mage::getSingleton('core/session')->addError($e->getMessage());
 			$this->_redirect('*/*/');
 		}
